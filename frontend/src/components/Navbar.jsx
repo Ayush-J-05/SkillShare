@@ -1,10 +1,8 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useClerk, UserButton, useUser } from '@clerk/react'
 
 const Navbar = () => {
-    const {openSignIn} = useClerk();
-    const {user} = useUser()
+    
     const navItems = [
         { name: "Home", path: "/" },
         { name: "Browse Tutorials", path: "/tutorials" },
@@ -14,8 +12,8 @@ const Navbar = () => {
 
     const linkStyle = ({ isActive }) =>
         `relative text-sm font-medium transition duration-300
-        ${isActive 
-            ? "text-blue-500" 
+        ${isActive
+            ? "text-blue-500"
             : "text-slate-700 dark:text-slate-300 hover:text-blue-500"
         }`;
 
@@ -34,7 +32,7 @@ const Navbar = () => {
 
                 {/* Navigation */}
                 <nav className="hidden md:flex items-center gap-9">
-                    
+
                     {navItems.map((item) => (
                         <NavLink key={item.name} to={item.path} className={linkStyle}>
                             {({ isActive }) => (
@@ -56,8 +54,8 @@ const Navbar = () => {
             <div className="flex items-center gap-6">
 
                 {/* Sign In Button */}
-                {user ? <UserButton /> : <button onClick={e => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'>Login</button>}
-                
+                <Link to='/login' className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'>Login</Link>
+
             </div>
         </header>
     );

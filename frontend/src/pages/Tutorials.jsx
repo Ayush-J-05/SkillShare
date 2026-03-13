@@ -1,37 +1,19 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { SignIn, useUser } from '@clerk/react'
 import tutorials, { categories } from "../assets/tutorials";
 import { Link } from "react-router-dom";
 
 const Tutorials = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("All Topics");
-  const { isSignedIn, isLoaded } = useUser();
+
 
   // filter
   const filteredTutorials =
     selectedCategory === "All Topics"
       ? tutorials
       : tutorials.filter((tutorial) => tutorial.category === selectedCategory);
-
-  // Wait for Clerk to load
-  if (!isLoaded) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
-      </div>
-    );
-  }
-
-  if (!isSignedIn) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <SignIn />
-      </div>
-    );
-  }
 
 
   return (

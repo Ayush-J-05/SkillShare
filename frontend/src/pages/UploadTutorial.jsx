@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { Upload, CheckCircle, Lightbulb } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { SignIn, useUser } from '@clerk/react'
 
 export default function UploadTutorial() {
 
     const [videoFile, setVideoFile] = useState(null);
     const [videoPreview, setVideoPreview] = useState(null);
-    const { isSignedIn, isLoaded } = useUser();
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -18,13 +16,6 @@ export default function UploadTutorial() {
         setVideoPreview(URL.createObjectURL(file));
     };
 
-    if (!isSignedIn) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <SignIn />
-            </div>
-        );
-    }
 
     return (
         <>
